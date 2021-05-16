@@ -1,0 +1,5 @@
+initModel = {}
+
+module.exports = {
+    initModel
+}
