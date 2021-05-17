@@ -1,23 +1,61 @@
-var figlet = require('figlet');
-const chalk = require('chalk');
+const figlet = require('figlet')
+const chalk = require('chalk')
+const inquirer = require('./inquirer')
 
-figlet('TIP  CALCULATOR  APP', function(err, data) {
-    if (err) {
-        console.log('Something went wrong...');
-        console.dir(err);
-        return;
+function getTitle(){
+    return chalk.red(
+        figlet.textSync(
+            'Counter App',
+            {
+                horizontalLayout: 'full',
+                font: 'Nancyj-Underlined'
+            }
+        )
+    )
+}
+
+function getTable(model){
+        const {BillAmount, porcentage, tip, total} = model
+        return [
+          {'Bill Amount' : BillAmount},
+          {'Tip%': porcentage},
+          {'Tip': tip}, 
+          {"total": total}
+        ]
+
+function inputForm(model){
+    const {input} = model
+    const message = 'Bill Amount?'
+    const message_tip = 'Tip'
+    return inquirer.prompt([{
+      name: 'BillAmount',
+      type: 'input',
+      message: message,
+      default: input
+    }, {
+      name: 'tip',
+      type: 'input',
+      message: message_tip,
+      default: input
+
     }
-    console.log(data)
-});
+  ])
+  }
 
-const { Table } = require('console-table-printer');
-//Create a table
-const p = new Table();
 
-p.addRows([
-  { "Bill Amount": 3, "Tip(%)": 'gelb bananen bitte', Tip: 100, Total: 100 }
-]);
-p.printTable();
+function view(model){
+  return {
+    title: getTitle(),
+    table: getTable(model)
+  }
+}
+
+module.exports = {
+  view,
+  inputForm,
+  listForm
+}
+
 
 
 
