@@ -8,10 +8,10 @@ function update(input, model){
     const newTotal = BillAmount + newTip
     return {
         ...model,
-        BillAmount: BillAmount,
-        percentage: percentage,
-        total: newTotal,
-        tip: newTip,
+        BillAmount: '$' + BillAmount,
+        percentage: percentage + '%',
+        total: '$' + newTotal,
+        tipValue: '$' + newTip,
     }
 }
 
