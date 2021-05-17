@@ -1,8 +1,9 @@
 initModel = {
-    BillAmount = 0,
-    porcentage = '%',
-    tip = 0,
-    total = 0
+    counter: 0,
+    input: '0',
+    porcentage: 0,
+    tip: 0,
+    total: 0
 }
 
 module.exports = {
