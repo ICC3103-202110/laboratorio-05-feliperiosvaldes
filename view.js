@@ -15,48 +15,39 @@ function getTitle(){
 }
 
 function getTable(model){
-    const {counter, porcentage, tip, total} = model
+    const {BillAmount, percentage, tip, total} = model
     return [
-        {'Bill Amount': counter},
-        {'Tip (%)': porcentage},
-        {'Tip': tip},
-        {'Total': total}
+        {
+        'Bill Amount': BillAmount,
+        'Tip (%)': percentage,
+        'Tip': tip,
+        'Total': total
+      }
     ]
 }
 
 function inputForm(model){
-    const {input} = model
+    const {BillAmount} = model
+    const {tipValue} = model
     const Bill = 'Bill Amount?'
     const Tip = 'Tip? (%)'
     return inquirer.prompt([
         {
-            name: 'input',
-            type: 'input',
+            name: 'BillAmount',
+            type: 'number',
             message: Bill,
-            default: input
+            default: BillAmount
         },
         {
-            name: 'tip',
-            type: 'input',
+            name: 'percentage',
+            type: 'number',
             message: Tip,
-            default: input
+            default: tipValue
 
         }
     ])
 }
 
-function listForm(model){
-    const {input} = model
-    const message = 'Increase or decrease?'
-    const choices = ['+', '-']
-    return inquirer.prompt({
-        name: 'input',
-        type: 'list',
-        message: message,
-        default: input,
-        choices: choices
-    })
-}
 
 // Get actual console view
 function view(model){
@@ -68,6 +59,6 @@ function view(model){
 
 module.exports = {
     view, 
-    inputForm,
-    listForm
+    inputForm
+  
 }
